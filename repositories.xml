@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<repositories version="1.0">
+	<repo quality="experimental" status="unofficial">
+		<name>zms-gentoo</name>
+		<description lang="en">Custom Gentoo Overlay from ZMS.</description>
+		<homepage>https://github.com/zszafran/gentoo-overlay</homepage>
+		<owner type="person">
+      <name>Zach Szafran</name>
+		  <email>zszafran@gmail.com</email>
+		</owner>
+		<source type="git">git://github.com/zszafran/gentoo-overlay.git</source>
+      <feed>https://github.com/zszafran/gentoo-overlay/commits/master.atom</feed>
+	</repo>
+</repositories>
