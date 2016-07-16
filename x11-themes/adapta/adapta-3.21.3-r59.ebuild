@@ -39,7 +39,7 @@ src_prepare() {
 }
 
 src_configure() {
-	econf \
+  econf \
     $(use_enable gtk_next) \
     $(use_enable chrome) \
     $(use_enable plank) \
@@ -50,7 +50,7 @@ src_configure() {
 }
 
 src_install() {
-	emake \
+  emake \
     prefix=${ED}/usr \
     datadir=${ED}/usr/share \
     install
