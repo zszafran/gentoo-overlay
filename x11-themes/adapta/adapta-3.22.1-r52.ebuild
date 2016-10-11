@@ -15,7 +15,7 @@ ECONF_SOURCE="${S}"
 RESTRICT="mirror"
 LICENSE="GPL-2 CC-BY-SA-3.0"
 SLOT="0"
-IUSE="gtk_next chrome plank cinnamon flashback unity xfce"
+IUSE="gtk_next chrome plank cinnamon flashback unity xfce parallel"
 
 DEPEND="
   media-gfx/inkscape
@@ -23,6 +23,7 @@ DEPEND="
   >=dev-ruby/sass-3.4.21
   >=dev-libs/glib-2.48.0
   dev-libs/libxml2
+  parallel? ( sys-process/parallel )
 "
 
 RDEPEND="
@@ -46,7 +47,8 @@ src_configure() {
     $(use_enable cinnamon) \
     $(use_enable flashback) \
     $(use_enable unity) \
-    $(use_enable xfce)
+    $(use_enable xfce) \
+	$(use_enable parallel)
 }
 
 src_install() {
