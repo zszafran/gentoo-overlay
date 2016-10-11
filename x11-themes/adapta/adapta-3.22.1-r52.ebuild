@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit autotools eutils ${GIT_ECLASS}
+inherit gnome2 autotools eutils ${GIT_ECLASS}
 
 DESCRIPTION="An adaptive Gtk+ theme based on Material Design Guidelines"
 HOMEPAGE="https://github.com/tista500/Adapta"
@@ -15,7 +15,7 @@ ECONF_SOURCE="${S}"
 RESTRICT="mirror"
 LICENSE="GPL-2 CC-BY-SA-3.0"
 SLOT="0"
-IUSE="gtk_next chrome plank cinnamon flashback unity xfce parallel"
+IUSE="gtk_next chrome plank cinnamon flashback unity xfce parallel mate openbox"
 
 DEPEND="
   media-gfx/inkscape
@@ -36,7 +36,7 @@ RDEPEND="
 
 src_prepare() {
   eautoreconf
-  eapply_user
+  gnome2_src_prepare
 }
 
 src_configure() {
@@ -48,12 +48,22 @@ src_configure() {
     $(use_enable flashback) \
     $(use_enable unity) \
     $(use_enable xfce) \
+	$(use_enable mate) \
+	$(use_enable openbox) \
 	$(use_enable parallel)
 }
 
-src_install() {
-    emake \
-    prefix=${ED}/usr \
-    datadir=${ED}/usr/share \
-    install
+#src_install() {
+#    emake \
+#    prefix=${ED}/usr \
+#    datadir=${ED}/usr/share \
+#    install
+#}
+
+src_compile(){
+	emake DESTDIR="${D}" || die
+}
+
+src_install(){
+	emake DESTDIR="${D}" install || die
 }
