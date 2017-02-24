@@ -30,7 +30,6 @@ RDEPEND="
   >=x11-libs/gtk+-3.20.1:3
   >=x11-libs/gdk-pixbuf-2.24.30
   >=x11-themes/gtk-engines-murrine-0.98.2
-  >=x11-themes/gtk-engines-adwaita-3.20.2
   >=x11-themes/gnome-themes-standard-3.14
 "
 
