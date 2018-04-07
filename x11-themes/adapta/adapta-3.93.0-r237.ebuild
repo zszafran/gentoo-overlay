@@ -8,22 +8,22 @@ inherit gnome2 autotools eutils ${GIT_ECLASS}
 
 DESCRIPTION="An adaptive Gtk+ theme based on Material Design Guidelines"
 HOMEPAGE="https://github.com/adapta-project/adapta-gtk-theme"
-SRC_URI="${HOMEPAGE}/archive/${PV}.${PR:1}.tar.gz"
+SRC_URI="${HOMEPAGE}/archive/3.93.0.237.tar.gz"
 KEYWORDS="~*"
-S="${WORKDIR}/adapta-gtk-theme-${PV}.${PR:1}"
+S="${WORKDIR}/adapta-gtk-theme-3.93.0.237"
 ECONF_SOURCE="${S}"
 RESTRICT="mirror"
 LICENSE="GPL-2 CC-BY-SA-3.0"
 SLOT="0"
-IUSE="gtk_next chrome plank cinnamon flashback unity xfce parallel mate openbox"
+IUSE="gtk_next gtk_legacy gnome telegram chrome plank cinnamon flashback unity xfce parallel mate openbox chrome_legacy"
 
 DEPEND="
   media-gfx/inkscape
-  >=dev-ruby/bundler-1.11
-  >=dev-ruby/sass-3.4.21
+  >=dev-lang/sassc-3.4.2
   >=dev-libs/glib-2.48.0
   dev-libs/libxml2
   parallel? ( sys-process/parallel )
+  virtual/pkgconfig
 "
 
 RDEPEND="
@@ -31,7 +31,8 @@ RDEPEND="
   >=x11-libs/gtk+-3.20.1:3
   >=x11-libs/gdk-pixbuf-2.24.30
   >=x11-themes/gtk-engines-murrine-0.98.2
-  >=x11-themes/gnome-themes-standard-3.14[gtk]
+  >=x11-themes/gnome-themes-standard-3.14
+  gnome? ( >=gnome-base/gnome-shell-3.18.3 )
 "
 
 src_prepare() {
@@ -42,7 +43,11 @@ src_prepare() {
 src_configure() {
     econf \
     $(use_enable gtk_next) \
+	$(use_enable gtk_legacy) \
+	$(use_enable chrome_legacy) \
     $(use_enable chrome) \
+	$(use_enable telegram) \
+	$(use_enable gnome) \
     $(use_enable plank) \
     $(use_enable cinnamon) \
     $(use_enable flashback) \
